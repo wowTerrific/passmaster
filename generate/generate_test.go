@@ -24,15 +24,12 @@ func TestGenerator(t *testing.T) {
 	t.Run("password should contain alphabetical characters, numbers, and symbols", func(t *testing.T) {
 		got := Generate()
 
-		// chars := make(map[rune]int)
-
 		categories := make(map[string]int)
 		categories["alphabet"] = 0
 		categories["number"] = 0
 		categories["symbol"] = 0
 
 		for _, val := range got {
-			// chars[val] += 1
 
 			if strings.ContainsRune(ALPHA, val) {
 				categories["alphabet"] += 1

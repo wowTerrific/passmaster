@@ -1,8 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/wowterrorism/passmaster/generate"
+)
 
 func main() {
-	fmt.Println("hello")
-
+	fmt.Println(generate.Generate())
+	fmt.Println(generate.Generate())
+	fmt.Println(generate.Generate())
 }

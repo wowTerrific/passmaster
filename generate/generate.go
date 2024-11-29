@@ -6,21 +6,25 @@ import (
 )
 
 const (
-	ALPHA string = "abcdefghijklmnopqrstuvwxyz"
+	ALPHA string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 	NUM   string = "1234567890"
-	SYMB  string = "!?()=+"
+	SYMB  string = "!?()=+$"
 )
 
 func Generate() string {
 
-	min := 12
-	max := 16
-	wordLimit := rand.Intn(max-min+1) + min
+	min := 14
+	max := 19 // non inclusive
+	wordLimit := rand.Intn(max-min) + min
+	categories := []string{ALPHA, NUM, SYMB}
 
 	var password strings.Builder
 
 	for i := 0; i < wordLimit; i++ {
-		password.WriteByte(ALPHA[i])
+		category := categories[rand.Intn(len(categories))]
+		character := category[rand.Intn(len(category))]
+
+		password.WriteByte(character)
 	}
 
 	return password.String()
