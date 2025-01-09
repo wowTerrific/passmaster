@@ -5,16 +5,24 @@ import (
 	"testing"
 )
 
-func TestGenerator(t *testing.T) {
+func TestDefaultGenerator(t *testing.T) {
+
+	g := Generator{
+		Alpha:     true,
+		Numeric:   true,
+		Symb:      true,
+		UpperOnly: false,
+		LowerOnly: false,
+	}
 	t.Run("generate password longer than 12 characters", func(t *testing.T) {
-		got := Generate()
+		got := g.Generate()
 		if len(got) < 12 {
 			t.Errorf("password length not greater than 12")
 		}
 	})
 	t.Run("generate different passwords", func(t *testing.T) {
-		got1 := Generate()
-		got2 := Generate()
+		got1 := g.Generate()
+		got2 := g.Generate()
 
 		if got1 == got2 {
 			t.Errorf("passwords should be different, got %q", got1)
@@ -22,7 +30,7 @@ func TestGenerator(t *testing.T) {
 	})
 
 	t.Run("password should contain alphabetical characters, numbers, and symbols", func(t *testing.T) {
-		got := Generate()
+		got := g.Generate()
 
 		categories := make(map[string]int)
 		categories["alphabet"] = 0

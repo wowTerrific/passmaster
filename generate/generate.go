@@ -11,7 +11,15 @@ const (
 	SYMB  string = "!?()=+$"
 )
 
-func Generate() string {
+type Generator struct {
+	Alpha     bool
+	Numeric   bool
+	Symb      bool
+	UpperOnly bool
+	LowerOnly bool
+}
+
+func (g *Generator) Generate() string {
 
 	min := 14
 	max := 19 // non inclusive
